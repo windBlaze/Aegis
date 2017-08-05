@@ -54,6 +54,10 @@ class ArpWeaver {
         }
     }
     
+    public func getSSID() -> String? {
+        return nil
+    }
+    
     public func getMAC(forIP: String) -> String? {
         let arpTable = getArpTable()
         return arpTable[forIP] // not unwrapped, if key not in there this is nil 

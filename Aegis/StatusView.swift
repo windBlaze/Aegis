@@ -39,6 +39,13 @@ class StatusView: NSView {
         }
     }
     
+    func manuallyTurnOff() {
+        onOffControl.selectSegment(withTag: 1)
+        onOnOffControlChange(self.onOffControl)
+        //onOffControl.selectedSegment = 1
+        //#onOffControl.sendAction(.valueChanged, to: self)
+    }
+    
     func updateStatus(withMessage: String ) {
         DispatchQueue.main.async {
             self.statusLabel.stringValue = "Status: \(withMessage)"
@@ -47,6 +54,7 @@ class StatusView: NSView {
     }
     
     @IBAction func onOnOffControlChange(_ sender: NSSegmentedControl) {
+        Swift.print("alerting for state change")
         if (sender.isSelected(forSegment: 0)) { // on
             //gatewayMAC = arpWeaver.getMAC(forIP: gatewayIP)
             //self.startControl()

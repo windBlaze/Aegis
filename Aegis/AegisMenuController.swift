@@ -24,6 +24,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     let arpWeaver = ArpWeaver()
     var accessPointIP:String?
     var accessPointMAC:String?
+    var accessPointSSID:String?
     
     override func awakeFromNib() {
         statusItem.menu = aegisMenu
@@ -80,7 +81,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     }
     
     func checkMAC() {
-        print("Mac checked")
+        print("Checking MAC")
+        // check if still connected to the same Wi-Fi
+        let currentAccessPointIP = arpWeaver.getGatewayIP()
+        if currentAccessPointIP == nil || didSSIDChange() {
+            // changed Wi-Fi, turn control off
+            statusView.manuallyTurnOff()
+            return
+        }
         let currentAccessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
         if (currentAccessPointMAC == nil) {print("nil")}
         let underAttack:Bool = (currentAccessPointMAC != nil && currentAccessPointMAC! != accessPointMAC)
@@ -90,6 +98,11 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         else {
             notifyOK()
         }
+    }
+    
+    private func didSSIDChange() -> Bool {
+        let currentSSID = arpWeaver.getSSID()
+        return (currentSSID != nil && currentSSID! != accessPointSSID!)
     }
     
     func notifyAttack() {
@@ -117,6 +130,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         accessPointIP = arpWeaver.getGatewayIP()
         if accessPointIP != nil {
             accessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
+            accessPointSSID = arpWeaver.getSSID()
             statusView.updateAPDetails(withIP: accessPointIP!, withMAC: accessPointMAC!)
             statusView.setOnOffState(enabled: true)
         }
