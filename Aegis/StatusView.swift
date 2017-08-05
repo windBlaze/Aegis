@@ -41,9 +41,8 @@ class StatusView: NSView {
     
     func manuallyTurnOff() {
         onOffControl.selectSegment(withTag: 1)
+        // doesn't fire automatically...
         onOnOffControlChange(self.onOffControl)
-        //onOffControl.selectedSegment = 1
-        //#onOffControl.sendAction(.valueChanged, to: self)
     }
     
     func updateStatus(withMessage: String ) {

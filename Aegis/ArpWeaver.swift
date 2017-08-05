@@ -9,23 +9,7 @@
 import Foundation
 import SystemConfiguration.CaptiveNetwork
 
-class ArpWeaver {
-    /*
-    public func getMAC()->(success:Bool,ssid:String,mac:String){
-        
-        if let cfa: NSArray = CNCopySupportedInterfaces() {
-            for x in cfa {
-                if let dict = CFBridgingRetain(CNCopyCurrentNetworkInfo(x as! CFString)) {
-                    let ssid = dict ["SSID"]!
-                    let mac  = dict["BSSID"]!
-                    return (true, ssid as! String, mac as! String)
-                }
-            }
-        }
-        return (false,"","")
-    }*/
-    
-    
+class ArpWeaver {    
     
     private func shell(launchPath: String, arguments: [String]) -> String {
         let task = Process()
