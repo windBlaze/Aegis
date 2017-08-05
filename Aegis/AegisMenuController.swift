@@ -77,6 +77,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     
     func stopControl() {
         stopControlTimer()
+        updateAPDetails()
         startAPTimer()
     }
     

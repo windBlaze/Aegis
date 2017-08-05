@@ -9,7 +9,46 @@
 import Foundation
 import SystemConfiguration.CaptiveNetwork
 
-class ArpWeaver {    
+class ArpWeaver {
+    
+    func getSSID() -> String? {
+        let airportOutput:String = shellWithPipe(firstLaunchPath: "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", firstArguments: ["-I"], secondLaunchPath: "/usr/bin/awk", secondArguments: ["/ SSID/ {print substr($0, index($0, $2))}"])
+        print(airportOutput)
+        if !airportOutput.isEmpty {
+            return airportOutput
+        }
+        else {
+            return nil
+        }
+    }
+    
+    private func shellWithPipe(firstLaunchPath:String, firstArguments: [String], secondLaunchPath:String, secondArguments: [String]) -> String {
+        
+        let pipe = Pipe()
+        
+        let echo = Process()
+        echo.launchPath = firstLaunchPath
+        echo.arguments = firstArguments
+        echo.standardOutput = pipe
+        
+        let uniq = Process()
+        uniq.launchPath = secondLaunchPath
+        uniq.arguments = secondArguments
+        uniq.standardInput = pipe
+        
+        let out = Pipe()
+        uniq.standardOutput = out
+        
+        echo.launch()
+        uniq.launch()
+        uniq.waitUntilExit()
+        
+        let data = out.fileHandleForReading.readDataToEndOfFile()
+        let output = String(bytes: data, encoding: String.Encoding.utf8)!
+        
+        return output
+    }
+    
     
     private func shell(launchPath: String, arguments: [String]) -> String {
         let task = Process()
@@ -36,10 +75,6 @@ class ArpWeaver {
         else {
             return nil
         }
-    }
-    
-    public func getSSID() -> String? {
-        return nil
     }
     
     public func getMAC(forIP: String) -> String? {
