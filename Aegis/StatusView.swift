@@ -28,6 +28,10 @@ class StatusView: NSView {
         super.draw(dirtyRect)
     }
     
+    func setOnOffState(enabled: Bool) {
+        onOffControl.setEnabled(enabled, forSegment: 0)
+    }
+    
     func updateAPDetails(withIP: String, withMAC: String) {
         DispatchQueue.main.async {
             self.APDetailsLabel.maximumNumberOfLines = 3

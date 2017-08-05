@@ -54,9 +54,6 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func startControlTimer() {
         ControlTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector (AegisMenuController.checkMAC), userInfo: nil, repeats: true)
         RunLoop.main.add(ControlTimer!, forMode: RunLoopMode.commonModes)
-        /*ControlTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
-            self?.checkMAC()
-        }*/
     }
     
     func stopControlTimer() {
@@ -85,9 +82,8 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func checkMAC() {
         print("Mac checked")
         let currentAccessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
-        print(currentAccessPointMAC)
-        print(accessPointMAC!)
-        let underAttack:Bool = (currentAccessPointMAC != accessPointMAC)
+        if (currentAccessPointMAC == nil) {print("nil")}
+        let underAttack:Bool = (currentAccessPointMAC != nil && currentAccessPointMAC! != accessPointMAC)
         if underAttack {
             notifyAttack()
         }
@@ -110,17 +106,25 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         let date = Date()
         let calendar = Calendar.current
         
-        let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        let seconds = calendar.component(.second, from: date)
+        let hour = String(format: "%02d", calendar.component(.hour, from: date))
+        let minutes = String(format: "%02d", calendar.component(.minute, from: date))
+        let seconds = String(format: "%02d", calendar.component(.second, from: date))
         return(" [ \(hour):\(minutes):\(seconds) ]")
     }
     
     func updateAPDetails() {
         print("AP details updated")
         accessPointIP = arpWeaver.getGatewayIP()
-        accessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
-        statusView.updateAPDetails(withIP: accessPointIP!, withMAC: accessPointMAC!)
+        if accessPointIP != nil {
+            accessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
+            statusView.updateAPDetails(withIP: accessPointIP!, withMAC: accessPointMAC!)
+            statusView.setOnOffState(enabled: true)
+        }
+        else {
+            // not connected to internet
+            statusView.updateAPDetails(withIP: "---", withMAC: "---")
+            statusView.setOnOffState(enabled: false)
+        }
     }
     
     @IBAction func onQuit(_ sender: Any) {

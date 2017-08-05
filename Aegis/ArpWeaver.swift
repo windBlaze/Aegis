@@ -7,8 +7,25 @@
 //
 
 import Foundation
+import SystemConfiguration.CaptiveNetwork
 
 class ArpWeaver {
+    /*
+    public func getMAC()->(success:Bool,ssid:String,mac:String){
+        
+        if let cfa: NSArray = CNCopySupportedInterfaces() {
+            for x in cfa {
+                if let dict = CFBridgingRetain(CNCopyCurrentNetworkInfo(x as! CFString)) {
+                    let ssid = dict ["SSID"]!
+                    let mac  = dict["BSSID"]!
+                    return (true, ssid as! String, mac as! String)
+                }
+            }
+        }
+        return (false,"","")
+    }*/
+    
+    
     
     private func shell(launchPath: String, arguments: [String]) -> String {
         let task = Process()
@@ -24,16 +41,22 @@ class ArpWeaver {
         return output
     }
     
-    public func getGatewayIP() -> String {
+    public func getGatewayIP() -> String? {
         let routeOutput:String = shell(launchPath: "/sbin/route", arguments: ["-n","get","default"])
-        let gateway = routeOutput.components(separatedBy: "\n")[3].trimmingCharacters(in: .whitespacesAndNewlines)
-        let gatewayIP = gateway.components(separatedBy: " ")[1]
-        return gatewayIP
+        let components = routeOutput.components(separatedBy: "\n")
+        if components.count >= 4 {
+            let gateway = components[3].trimmingCharacters(in: .whitespacesAndNewlines)
+            let gatewayIP = gateway.components(separatedBy: " ")[1]
+            return gatewayIP
+        }
+        else {
+            return nil
+        }
     }
     
-    public func getMAC(forIP: String) -> String {
+    public func getMAC(forIP: String) -> String? {
         let arpTable = getArpTable()
-        return arpTable[forIP]!
+        return arpTable[forIP] // not unwrapped, if key not in there this is nil 
     }
     
     private func getArpTable() -> [String:String] {
