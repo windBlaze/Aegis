@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Nfd-5L-aMd" id="HgV-D2-mjM"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Nfd-5L-aMd" customClass="AppDelegate" customModule="Aegis" customModuleProvider="target"/>
+        <customObject id="XeJ-Iu-Vvo" customClass="NSFontManager"/>
+        <customObject id="QGQ-z2-FLI" customClass="AegisMenuController" customModule="Aegis" customModuleProvider="target">
+            <connections>
+                <outlet property="aegisMenu" destination="qA7-3p-zpU" id="HmZ-Ks-XxB"/>
+                <outlet property="statusView" destination="p6q-AU-HfT" id="ziR-Rk-AVx"/>
+            </connections>
+        </customObject>
+        <menu id="qA7-3p-zpU">
+            <items>
+                <menuItem title="Status" id="yNN-Nz-vZS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="fps-HC-jA8"/>
+                <menuItem title="Quit" keyEquivalent="q" id="M4C-LA-Zcs">
+                    <connections>
+                        <action selector="onQuit:" target="QGQ-z2-FLI" id="taP-PV-JHi"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="42.5" y="48.5"/>
+        </menu>
+        <customView id="p6q-AU-HfT" customClass="StatusView" customModule="Aegis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="189" height="114"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2B4-nQ-yuF">
+                    <rect key="frame" x="59" y="6" width="71" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="iwm-0D-4mf">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment width="32"/>
+                            <segment width="32" selected="YES" tag="1"/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="onOnOffControlChange:" target="p6q-AU-HfT" id="Zug-wm-04r"/>
+                    </connections>
+                </segmentedControl>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0m-Nd-r4Y">
+                    <rect key="frame" x="6" y="34" width="177" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Status: " id="Lxa-xH-nOC">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuJ-Qe-f3X">
+                    <rect key="frame" x="6" y="53" width="177" height="55"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="AP Details..." id="7Pq-g5-hf7">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="APDetailsLabel" destination="VuJ-Qe-f3X" id="XNd-gH-R0F"/>
+                <outlet property="onOffControl" destination="2B4-nQ-yuF" id="CWq-Zg-fUe"/>
+                <outlet property="statusLabel" destination="x0m-Nd-r4Y" id="NE2-QZ-KJ9"/>
+            </connections>
+            <point key="canvasLocation" x="62.5" y="210"/>
+        </customView>
+    </objects>
+</document>
