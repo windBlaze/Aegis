@@ -22,6 +22,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     let arpWeaver = ArpWeaver()
+    let notificationHandler = NotificationHandler()
     var accessPointIP:String?
     var accessPointMAC:String?
     var accessPointSSID:String?
@@ -86,7 +87,8 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         // check if still connected to the same Wi-Fi
         let currentAccessPointIP = arpWeaver.getGatewayIP()
         if currentAccessPointIP == nil || didSSIDChange() {
-            // changed Wi-Fi, turn control off
+            // changed Wi-Fi or disconnect, turn control off
+            notificationHandler.sendWiFiDisconnectNotification()
             statusView.manuallyTurnOff()
             return
         }

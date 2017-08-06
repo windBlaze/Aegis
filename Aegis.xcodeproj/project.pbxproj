@@ -13,6 +13,7 @@
 		E414912B1F2D22AB003F52E4 /* AegisMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414912A1F2D22AB003F52E4 /* AegisMenuController.swift */; };
 		E414912F1F2D2EAA003F52E4 /* ArpWeaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414912E1F2D2EAA003F52E4 /* ArpWeaver.swift */; };
 		E41491331F2D30BD003F52E4 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41491321F2D30BD003F52E4 /* StatusView.swift */; };
+		E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B79A1F36747500721BAE /* NotificationHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E414912A1F2D22AB003F52E4 /* AegisMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AegisMenuController.swift; sourceTree = "<group>"; };
 		E414912E1F2D2EAA003F52E4 /* ArpWeaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArpWeaver.swift; sourceTree = "<group>"; };
 		E41491321F2D30BD003F52E4 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		E498B79A1F36747500721BAE /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E414912A1F2D22AB003F52E4 /* AegisMenuController.swift */,
 				E414912E1F2D2EAA003F52E4 /* ArpWeaver.swift */,
 				E41491321F2D30BD003F52E4 /* StatusView.swift */,
+				E498B79A1F36747500721BAE /* NotificationHandler.swift */,
 			);
 			path = Aegis;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				E414912B1F2D22AB003F52E4 /* AegisMenuController.swift in Sources */,
 				E414911A1F2D218D003F52E4 /* AppDelegate.swift in Sources */,
+				E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */,
 				E41491331F2D30BD003F52E4 /* StatusView.swift in Sources */,
 				E414912F1F2D2EAA003F52E4 /* ArpWeaver.swift in Sources */,
 			);
@@ -288,6 +292,7 @@
 				E41491271F2D218E003F52E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

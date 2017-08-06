@@ -26,6 +26,11 @@ class StatusView: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        //onOffControl.setImage(NSImage(color: NSColor.red,size:onOffControl.subviews[1].fittingSize), forSegment: 0)
+    }
+    
+    override func awakeFromNib() {
+        onOffControl.setImage(NSImage(named: "shieldGreen"), forSegment: 0)
     }
     
     func setOnOffState(enabled: Bool) {
