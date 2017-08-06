@@ -24,7 +24,11 @@ class NotificationHandler {
     }
     
     public func sendWiFiDisconnectNotification() {
-        sendNotification(withTitle: "Aegis Update", withSubtitle: "WiFi disconnected")
+        sendNotification(withTitle: "Aegis Update", withSubtitle: "WiFi disconnected...")
+    }
+    
+    public func sendAttackNotification() {
+        sendNotification(withTitle: "Aegis Warning", withSubtitle: "Under attack!")
     }
     
     public func sendWiFiChangeNotification() {
