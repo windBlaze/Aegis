@@ -8,7 +8,7 @@
 
 import Cocoa
 
-enum SavedState {
+enum RememberState {
     case YES
     case NO
 }
@@ -20,12 +20,14 @@ enum ControlState {
 
 protocol StatusViewDelegate {
     func onControlChange(state: ControlState)
+    func onRememberChange(state: RememberState)
 }
 
 class StatusView: NSView {
     @IBOutlet weak var onOffControl: NSSegmentedControl!
     @IBOutlet weak var APDetailsLabel: NSTextField!
     @IBOutlet weak var statusLabel: NSTextField!
+    @IBOutlet weak var rememberCheckbox: NSButton!
     
     var delegate: StatusViewDelegate?
     
@@ -42,8 +44,14 @@ class StatusView: NSView {
         onOffControl.setEnabled(enabled, forSegment: 0)
     }
     
-    func setSaveState(enabled: Bool) {
-        
+    func manuallyCheckRemember() {
+        if (rememberCheckbox.state == NSOffState) {
+            rememberCheckbox.setNextState()
+        }
+    }
+    
+    func setRememberState(enabled: Bool) {
+        //rememberCheckbox.
     }
     
     func updateAPDetails(withIP: String, withMAC: String) {
@@ -73,7 +81,7 @@ class StatusView: NSView {
     }
     
     @IBAction func onOnOffControlChange(_ sender: NSSegmentedControl) {
-        Swift.print("alerting for state change")
+        Swift.print("on off state change")
         if (sender.isSelected(forSegment: 0)) { // on
             //gatewayMAC = arpWeaver.getMAC(forIP: gatewayIP)
             //self.startControl()
@@ -81,6 +89,16 @@ class StatusView: NSView {
             delegate?.onControlChange(state: ControlState.ON)
         } else { // off
             delegate?.onControlChange(state: ControlState.OFF)
+        }
+    }
+    
+    @IBAction func onRememberCheckboxChange(_ sender: NSButton) {
+        Swift.print("remember state change")
+        if (sender.state == NSOnState) { //
+            delegate?.onRememberChange(state: .YES)
+        }
+        else { // off
+            delegate?.onRememberChange(state: .NO)
         }
     }
     

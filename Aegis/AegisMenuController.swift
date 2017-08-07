@@ -40,7 +40,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         statusMenuItem.view = statusView
         statusView.delegate = self
         
-        updateAPDetails()
+        //updateAPDetails()
         startAPTimer()
     }
     
@@ -137,17 +137,18 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             accessPointSSID = arpWeaver.getSSID()
             statusView.updateAPDetails(withIP: accessPointIP!, withMAC: accessPointMAC!)
             statusView.setOnOffState(enabled: true)
-            statusView.setSaveState(enabled: true)
+            statusView.setRememberState(enabled: true)
             // turn on automatically if saved 
             if (PreferencesHandler.isAccessPointSaved(withSSID: accessPointSSID!, withMAC: accessPointMAC!)) {
                 statusView.manuallyTurnOn()
+                statusView.manuallyCheckRemember()
             }
         }
         else {
             // not connected to internet
             statusView.updateAPDetails(withIP: "---", withMAC: "---")
             statusView.setOnOffState(enabled: false)
-            statusView.setSaveState(enabled: false)
+            statusView.setRememberState(enabled: false)
         }
     }
     
@@ -155,8 +156,8 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         NSApplication.shared().terminate(self)
     }
     
-    func onSavedChange(state: SavedState) {
-        if state == SavedState.YES {
+    func onRememberChange(state: RememberState) {
+        if state == RememberState.YES {
             PreferencesHandler.saveAccessPoint(withSSID: accessPointSSID!, withMAC: accessPointMAC!)
         }
         else {

@@ -71,10 +71,22 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3v-7P-9JI">
+                    <rect key="frame" x="132" y="7" width="51" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Auto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rpz-jj-Z2v">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onRememberCheckboxChange:" target="p6q-AU-HfT" id="7qN-tg-U8q"/>
+                    </connections>
+                </button>
             </subviews>
             <connections>
                 <outlet property="APDetailsLabel" destination="VuJ-Qe-f3X" id="XNd-gH-R0F"/>
                 <outlet property="onOffControl" destination="2B4-nQ-yuF" id="CWq-Zg-fUe"/>
+                <outlet property="rememberCheckbox" destination="l3v-7P-9JI" id="xSP-dG-pbg"/>
                 <outlet property="statusLabel" destination="x0m-Nd-r4Y" id="NE2-QZ-KJ9"/>
             </connections>
             <point key="canvasLocation" x="62.5" y="210"/>
