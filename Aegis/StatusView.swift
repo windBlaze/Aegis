@@ -8,6 +8,11 @@
 
 import Cocoa
 
+enum SavedState {
+    case YES
+    case NO
+}
+
 enum ControlState {
     case ON
     case OFF
@@ -37,6 +42,10 @@ class StatusView: NSView {
         onOffControl.setEnabled(enabled, forSegment: 0)
     }
     
+    func setSaveState(enabled: Bool) {
+        
+    }
+    
     func updateAPDetails(withIP: String, withMAC: String) {
         DispatchQueue.main.async {
             self.APDetailsLabel.maximumNumberOfLines = 3
@@ -46,6 +55,12 @@ class StatusView: NSView {
     
     func manuallyTurnOff() {
         onOffControl.selectSegment(withTag: 1)
+        // doesn't fire automatically...
+        onOnOffControlChange(self.onOffControl)
+    }
+    
+    func manuallyTurnOn() {
+        onOffControl.selectSegment(withTag: 0)
         // doesn't fire automatically...
         onOnOffControlChange(self.onOffControl)
     }

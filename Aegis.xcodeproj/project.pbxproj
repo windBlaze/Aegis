@@ -14,6 +14,7 @@
 		E414912F1F2D2EAA003F52E4 /* ArpWeaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414912E1F2D2EAA003F52E4 /* ArpWeaver.swift */; };
 		E41491331F2D30BD003F52E4 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41491321F2D30BD003F52E4 /* StatusView.swift */; };
 		E473589A1F38BADB006DE437 /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47358991F38BADB006DE437 /* SHA256.swift */; };
+		E473589D1F38BBEC006DE437 /* PreferencesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473589C1F38BBEC006DE437 /* PreferencesHandler.swift */; };
 		E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B79A1F36747500721BAE /* NotificationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		E41491321F2D30BD003F52E4 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		E47358991F38BADB006DE437 /* SHA256.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		E473589B1F38BB1B006DE437 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		E473589C1F38BBEC006DE437 /* PreferencesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesHandler.swift; sourceTree = "<group>"; };
 		E498B79A1F36747500721BAE /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 				E414911D1F2D218D003F52E4 /* Assets.xcassets */,
 				E41491221F2D218E003F52E4 /* Info.plist */,
 				E41491281F2D222F003F52E4 /* AegisMenu.xib */,
+				E473589C1F38BBEC006DE437 /* PreferencesHandler.swift */,
 				E414912A1F2D22AB003F52E4 /* AegisMenuController.swift */,
 				E414912E1F2D2EAA003F52E4 /* ArpWeaver.swift */,
 				E41491321F2D30BD003F52E4 /* StatusView.swift */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E414912B1F2D22AB003F52E4 /* AegisMenuController.swift in Sources */,
+				E473589D1F38BBEC006DE437 /* PreferencesHandler.swift in Sources */,
 				E414911A1F2D218D003F52E4 /* AppDelegate.swift in Sources */,
 				E473589A1F38BADB006DE437 /* SHA256.swift in Sources */,
 				E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */,

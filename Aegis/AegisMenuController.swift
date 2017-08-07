@@ -88,7 +88,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         let currentAccessPointIP = arpWeaver.getGatewayIP()
         if currentAccessPointIP == nil || didSSIDChange() {
             // changed Wi-Fi or disconnect, turn control off
-            notificationHandler.sendWiFiDisconnectNotification()
+            //notificationHandler.sendWiFiDisconnectNotification()
             statusView.manuallyTurnOff()
             return
         }
@@ -137,16 +137,31 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             accessPointSSID = arpWeaver.getSSID()
             statusView.updateAPDetails(withIP: accessPointIP!, withMAC: accessPointMAC!)
             statusView.setOnOffState(enabled: true)
+            statusView.setSaveState(enabled: true)
+            // turn on automatically if saved 
+            if (PreferencesHandler.isAccessPointSaved(withSSID: accessPointSSID!, withMAC: accessPointMAC!)) {
+                statusView.manuallyTurnOn()
+            }
         }
         else {
             // not connected to internet
             statusView.updateAPDetails(withIP: "---", withMAC: "---")
             statusView.setOnOffState(enabled: false)
+            statusView.setSaveState(enabled: false)
         }
     }
     
     @IBAction func onQuit(_ sender: Any) {
         NSApplication.shared().terminate(self)
+    }
+    
+    func onSavedChange(state: SavedState) {
+        if state == SavedState.YES {
+            PreferencesHandler.saveAccessPoint(withSSID: accessPointSSID!, withMAC: accessPointMAC!)
+        }
+        else {
+            PreferencesHandler.deleteAccessPoint(withSSID: accessPointSSID!)
+        }
     }
     
     func onControlChange(state: ControlState) {

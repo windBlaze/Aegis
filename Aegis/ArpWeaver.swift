@@ -15,7 +15,7 @@ class ArpWeaver {
         let airportOutput:String = shellWithPipe(firstLaunchPath: "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", firstArguments: ["-I"], secondLaunchPath: "/usr/bin/awk", secondArguments: ["/ SSID/ {print substr($0, index($0, $2))}"])
         print(airportOutput)
         if !airportOutput.isEmpty {
-            return airportOutput
+            return airportOutput.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         else {
             return nil
