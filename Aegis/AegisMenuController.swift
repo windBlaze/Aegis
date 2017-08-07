@@ -112,7 +112,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func notifyAttack() {
         setIcon(toImage: "shieldRed")
         statusView.updateStatus(withMessage: "Under Attack!")
-        notificationHandler.sendAttackNotification()
+        //notificationHandler.sendAttackNotification()
     }
     
     func notifyOK() {
