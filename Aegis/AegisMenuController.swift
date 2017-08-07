@@ -12,12 +12,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     
     @IBOutlet weak var aegisMenu: NSMenu!
     @IBOutlet weak var statusView: StatusView!
+    @IBOutlet weak var headerView: HeaderView!
     
     // timers 
     weak var APTimer: Timer?
     weak var ControlTimer: Timer?
     
     var statusMenuItem: NSMenuItem!
+    var headerMenuItem: NSMenuItem!
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
@@ -34,6 +36,10 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         
         // attach menu
         statusItem.menu = aegisMenu
+        
+        // create header view 
+        headerMenuItem = aegisMenu.item(withTitle: "Header")
+        headerMenuItem.view = headerView
         
         // create status view
         statusMenuItem = aegisMenu.item(withTitle: "Status")
@@ -111,12 +117,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     
     func notifyAttack() {
         setIcon(toImage: "shieldRed")
+        headerView.setHeaderAttack()
         statusView.updateStatus(withMessage: "Under Attack!")
         //notificationHandler.sendAttackNotification()
     }
     
     func notifyOK() {
         setIcon(toImage: "shieldGreen")
+        headerView.setHeaderMonitoring()
         statusView.updateStatus(withMessage: "\(getTimestamp()) OK!")
     }
     
