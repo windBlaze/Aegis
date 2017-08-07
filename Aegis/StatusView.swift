@@ -37,7 +37,7 @@ class StatusView: NSView {
     }
     
     override func awakeFromNib() {
-        onOffControl.setImage(NSImage(named: "shieldGreen"), forSegment: 0)
+        //onOffControl.setImage(NSImage(named: "shieldGreen"), forSegment: 0)
     }
     
     func setOnOffState(enabled: Bool) {
@@ -50,8 +50,14 @@ class StatusView: NSView {
         }
     }
     
+    func manuallyUnCheckRemember() {
+        if (rememberCheckbox.state == NSOnState) {
+            rememberCheckbox.setNextState()
+        }
+    }
+    
     func setRememberState(enabled: Bool) {
-        //rememberCheckbox.
+        rememberCheckbox.isEnabled = enabled
     }
     
     func updateAPDetails(withIP: String, withMAC: String) {

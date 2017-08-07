@@ -89,6 +89,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         if currentAccessPointIP == nil || didSSIDChange() {
             // changed Wi-Fi or disconnect, turn control off
             //notificationHandler.sendWiFiDisconnectNotification()
+            statusView.manuallyUnCheckRemember()
             statusView.manuallyTurnOff()
             return
         }
