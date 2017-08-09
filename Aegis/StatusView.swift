@@ -81,7 +81,7 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
         leftStyle.alignment = NSTextAlignment.left
         let rightStyle = NSMutableParagraphStyle()
         rightStyle.alignment = NSTextAlignment.right
-        rightStyle.tabStops = [ NSTextTab(textAlignment: .right, location: 70, options: [:]),]
+        rightStyle.tabStops = [ NSTextTab(textAlignment: .right, location: 40, options: [:]),]
         
         let leftAttributes: [String : Any] = [NSParagraphStyleAttributeName: leftStyle]
         let rightAttributes: [String : Any] = [NSParagraphStyleAttributeName: rightStyle,NSFontAttributeName: NSFont.boldSystemFont(ofSize: 13)]
@@ -162,7 +162,6 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
             delegate?.onControlChange(state: ControlState.OFF)
         }
     }
-    
     
     
     @IBAction func onRememberCheckboxChange(_ sender: NSButton) {

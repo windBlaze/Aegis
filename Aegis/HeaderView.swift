@@ -30,17 +30,18 @@ extension NSView {
 
 class HeaderView: NSView {
     
-    let greenColor = NSColor(red: 28.0, green: 61.0, blue: 11.0, alpha: 0.6)
+    let greenColor = NSColor(red: 28.0, green: 61.0, blue: 11.0, alpha: 1)
     let blackColor = NSColor.black
-    let redColor = NSColor(red: 28.0, green: 61.0, blue: 11.0, alpha: 0.5)
+    let redColor = NSColor(red: 30.0, green: 0.0, blue: 6.0, alpha: 0.5)
 
     
     
     @IBOutlet weak var headerImage: NSImageView!
     
     override func awakeFromNib(){
-        self.backgroundColor = blackColor
+        self.backgroundColor = greenColor
         headerImage.image = NSImage(named: "whiteEagle")
+        headerImage.backgroundColor = NSColor.clear
         //headerImage.backgroundColor = NSColor.clear
         //self.backgroundColor = NSColor(red: 49.0, green: 104.0, blue: 19.0, alpha: 1.0)
     }
@@ -54,9 +55,9 @@ class HeaderView: NSView {
     }
     
     func setHeaderAttack() {
-        if !(backgroundColor == NSColor.red) {
+        if !(backgroundColor == redColor) {
             DispatchQueue.main.async {
-                self.backgroundColor = NSColor.red
+                self.backgroundColor = self.redColor
             }
         }
     }
