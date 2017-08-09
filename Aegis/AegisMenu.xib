@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -105,7 +106,7 @@
                         </subviews>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="6k1-vw-xc9">
-                        <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                        <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="bF5-SP-pqm">
@@ -136,8 +137,16 @@
             <rect key="frame" x="0.0" y="0.0" width="163" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <box fixedFrame="YES" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="ILS-WC-w9N">
+                    <rect key="frame" x="-3" y="-4" width="169" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="FXN-da-C30">
+                        <rect key="frame" x="2" y="2" width="165" height="63"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
                 <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-uR-uja">
-                    <rect key="frame" x="45" y="8" width="74" height="60"/>
+                    <rect key="frame" x="44" y="8" width="74" height="60"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="wI3-lh-Nve"/>
                 </imageView>
