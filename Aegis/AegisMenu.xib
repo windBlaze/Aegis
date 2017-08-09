@@ -137,13 +137,14 @@
             <rect key="frame" x="0.0" y="0.0" width="163" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <box fixedFrame="YES" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="ILS-WC-w9N">
-                    <rect key="frame" x="-3" y="-4" width="169" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="FXN-da-C30">
-                        <rect key="frame" x="2" y="2" width="165" height="63"/>
+                <box fixedFrame="YES" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="ILS-WC-w9N">
+                    <rect key="frame" x="0.0" y="0.0" width="163" height="76"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <view key="contentView" ambiguous="YES" id="FXN-da-C30">
+                        <rect key="frame" x="0.0" y="0.0" width="163" height="76"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
+                    <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </box>
                 <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-uR-uja">
                     <rect key="frame" x="44" y="8" width="74" height="60"/>
@@ -152,6 +153,7 @@
                 </imageView>
             </subviews>
             <connections>
+                <outlet property="backgroundBox" destination="ILS-WC-w9N" id="Npa-aw-BzP"/>
                 <outlet property="headerImage" destination="8yA-uR-uja" id="R5o-9b-6cM"/>
             </connections>
             <point key="canvasLocation" x="353.5" y="79"/>

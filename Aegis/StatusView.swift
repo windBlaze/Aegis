@@ -34,7 +34,7 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
                          ["itemHeader":"IP","itemInfo":"Loading..."],
                          ["itemHeader":"MAC","itemInfo":"Loading..."],
                          ["headerInfo":"STATUS"],
-                         ["itemHeader":"Loading...","itemInfo":""]
+                         ["itemHeader":"OFF","itemInfo":""]
     ]
     
     let IPRow = 1

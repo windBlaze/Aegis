@@ -177,11 +177,13 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func onControlChange(state: ControlState) {
         if state == ControlState.ON {
             setIcon(toImage: "shieldGreen")
+            headerView.setHeaderMonitoring()
             statusView.updateStatus(withHeader: "ON", withInfo: "")
             startControl()
         }
         else {
             setIcon(toImage: "shield")
+            headerView.setHeaderOff()
             statusView.updateStatus(withHeader: "OFF", withInfo: "")
             stopControl()
         }
