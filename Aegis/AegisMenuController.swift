@@ -118,14 +118,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func notifyAttack() {
         setIcon(toImage: "shieldRed")
         headerView.setHeaderAttack()
-        statusView.updateStatus(withMessage: "Under Attack!")
+        statusView.updateStatus(withHeader: "Under Attack!", withInfo: getTimestamp())
         //notificationHandler.sendAttackNotification()
     }
     
     func notifyOK() {
         setIcon(toImage: "shieldGreen")
         headerView.setHeaderMonitoring()
-        statusView.updateStatus(withMessage: "\(getTimestamp()) OK!")
+        statusView.updateStatus(withHeader: "OK", withInfo:getTimestamp())
     }
     
     private func getTimestamp() -> String {
@@ -135,7 +135,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         let hour = String(format: "%02d", calendar.component(.hour, from: date))
         let minutes = String(format: "%02d", calendar.component(.minute, from: date))
         let seconds = String(format: "%02d", calendar.component(.second, from: date))
-        return(" [ \(hour):\(minutes):\(seconds) ]")
+        return("\(hour):\(minutes):\(seconds)")
     }
     
     func updateAPDetails() {
@@ -177,12 +177,12 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func onControlChange(state: ControlState) {
         if state == ControlState.ON {
             setIcon(toImage: "shieldGreen")
-            statusView.updateStatus(withMessage: "ON")
+            statusView.updateStatus(withHeader: "ON", withInfo: "")
             startControl()
         }
         else {
             setIcon(toImage: "shield")
-            statusView.updateStatus(withMessage: "OFF")
+            statusView.updateStatus(withHeader: "OFF", withInfo: "")
             stopControl()
         }
     }

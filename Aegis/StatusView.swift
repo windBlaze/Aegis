@@ -40,7 +40,7 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     let IPRow = 1
     let MACRow = 2
     let StatusRow = 4
-    let cellLength = 35
+    let padLength = 10
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,10 +68,33 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
             let result = tableView.make(withIdentifier: "TableCell", owner: self) as! NSTableCellView
             let header = tableViewData[row]["itemHeader"]!
             let info = tableViewData[row]["itemInfo"]!
-            result.textField?.stringValue = header + String.init(repeating: " ", count: cellLength-header.characters.count - info.characters.count) + info
+            result.textField?.attributedStringValue = leftAndRightJustify(leftPart: header, rightPart: info)
+            //result.textField?.stringValue = header + String.init(repeating: " ", count: cellLength-header.characters.count - info.characters.count) + info
             return result
         }
     }
+    
+    func leftAndRightJustify(leftPart:String, rightPart:String) -> NSMutableAttributedString {
+        let result = NSMutableAttributedString()
+        
+        let leftStyle = NSMutableParagraphStyle()
+        leftStyle.alignment = NSTextAlignment.left
+        let rightStyle = NSMutableParagraphStyle()
+        rightStyle.alignment = NSTextAlignment.right
+        rightStyle.tabStops = [ NSTextTab(textAlignment: .right, location: 70, options: [:]),]
+        
+        let leftAttributes: [String : Any] = [NSParagraphStyleAttributeName: leftStyle]
+        let rightAttributes: [String : Any] = [NSParagraphStyleAttributeName: rightStyle,NSFontAttributeName: NSFont.boldSystemFont(ofSize: 13)]
+        
+        let leftPartAttr = NSAttributedString(string: leftPart, attributes:leftAttributes)
+        let rightPartAttr = NSAttributedString(string: "\t\t"+rightPart, attributes:rightAttributes)
+        
+        result.append(leftPartAttr)
+        result.append(rightPartAttr)
+        
+        return result
+    }
+    
     
     func setOnOffState(enabled: Bool) {
         onOffControl.setEnabled(enabled, forSegment: 0)
@@ -117,11 +140,12 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
         onOnOffControlChange(self.onOffControl)
     }
     
-    func updateStatus(withMessage: String ) {
+    func updateStatus(withHeader: String, withInfo: String ) {
         DispatchQueue.main.async {
             //self.statusLabel.stringValue = "Status: \(withMessage)"
             //self.statusLabel.setNeedsDisplay()
-            self.tableViewData[self.StatusRow]["itemHeader"] = withMessage
+            self.tableViewData[self.StatusRow]["itemHeader"] = withHeader
+            self.tableViewData[self.StatusRow]["itemInfo"] = withInfo
             //self.tableViewData[self.MACRow]["itemInfo"] = withMAC
             self.tableView.reloadData()
         }
