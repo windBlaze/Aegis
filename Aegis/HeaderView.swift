@@ -11,39 +11,37 @@ import Cocoa
 class HeaderView: NSView {
     
     @IBOutlet weak var backgroundBox: NSBox!
-    let greenColor = NSColor(red: 102, green: 206, blue: 54, alpha: 1)
-    let blackColor = NSColor.black
-    let redColor = NSColor(red: 232, green: 63, blue: 55, alpha: 1)
+    let greenGradient = NSColor.init(patternImage: NSImage(named: "green")!)
+    let redGradient = NSColor.init(patternImage: NSImage(named: "red")!)
+    let blackGradient = NSColor.init(patternImage: NSImage(named: "black")!)
+    let orangeGradient = NSColor.init(patternImage: NSImage(named: "orange")!)
 
     
     @IBOutlet weak var headerImage: NSImageView!
     
     override func awakeFromNib(){
         headerImage.image = NSImage(named: "whiteEagle")
+        changeBackground(toColor: orangeGradient)
+    }
+    
+    private func changeBackground (toColor:NSColor) {
+        if (backgroundBox.fillColor != toColor) {
+            DispatchQueue.main.async {
+                self.backgroundBox.fillColor = toColor
+            }
+        }
     }
     
     func setHeaderOff() {
-        if (backgroundBox.fillColor != blackColor ) {
-            DispatchQueue.main.async {
-                self.backgroundBox.fillColor = self.blackColor
-            }
-        }
+        changeBackground(toColor: orangeGradient)
     }
     
     
     func setHeaderMonitoring() {
-        if (backgroundBox.fillColor != greenColor ) {
-            DispatchQueue.main.async {
-                self.backgroundBox.fillColor = self.greenColor
-            }
-        }
+        changeBackground(toColor: greenGradient)
     }
     
     func setHeaderAttack() {
-        if !(backgroundBox.fillColor == redColor) {
-            DispatchQueue.main.async {
-                self.backgroundBox.fillColor = self.redColor
-            }
-        }
+        changeBackground(toColor: redGradient)
     }
 }

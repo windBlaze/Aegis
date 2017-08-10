@@ -46,6 +46,10 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         statusMenuItem.view = statusView
         statusView.delegate = self
         
+        // disable on off
+        statusView.setOnOffState(enabled: false)
+        statusView.setRememberState(enabled: false)
+        
         //updateAPDetails()
         startAPTimer()
     }
