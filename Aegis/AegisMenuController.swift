@@ -33,7 +33,6 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
         statusItem.menu = aegisMenu
         setIcon(toImage: "shield")
         
-        
         // attach menu
         statusItem.menu = aegisMenu
         
@@ -77,6 +76,9 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
         DispatchQueue.main.async {
             // create icon
             let icon = NSImage(named: toImage)
+            if (toImage == "shield") { // black icon
+                icon?.isTemplate = true // dark mode
+            }
             //icon?.isTemplate = true // dark mode
             self.statusItem.image = icon
         }
