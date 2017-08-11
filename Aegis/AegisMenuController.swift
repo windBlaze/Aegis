@@ -24,7 +24,7 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     let arpWeaver = ArpWeaver()
-    let notificationHandler = NotificationHandler()
+    //let notificationHandler = NotificationHandler()
     var accessPointIP:String?
     var accessPointMAC:String?
     var accessPointSSID:String?
@@ -96,7 +96,7 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
     }
     
     func checkMAC() {
-        print("Checking MAC")
+        //print("Checking MAC")
         // check if still connected to the same Wi-Fi
         let currentAccessPointIP = arpWeaver.getGatewayIP()
         if currentAccessPointIP == nil || didSSIDChange() {
@@ -107,7 +107,7 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
             return
         }
         let currentAccessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
-        if (currentAccessPointMAC == nil) {print("nil")}
+        //if (currentAccessPointMAC == nil) {print("nil")}
         let underAttack:Bool = (currentAccessPointMAC != nil && currentAccessPointMAC! != accessPointMAC)
         if underAttack {
             notifyAttack()
@@ -146,7 +146,7 @@ class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
     }
     
     func updateAPDetails() {
-        print("AP details updated")
+        //print("AP details updated")
         accessPointIP = arpWeaver.getGatewayIP()
         if accessPointIP != nil {
             accessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)

@@ -20,7 +20,6 @@ class HeaderView: NSView {
     @IBOutlet weak var backgroundBox: NSBox!
     let greenGradient = NSColor.init(patternImage: NSImage(named: "green")!)
     let redGradient = NSColor.init(patternImage: NSImage(named: "red")!)
-    let blackGradient = NSColor.init(patternImage: NSImage(named: "black")!)
     let orangeGradient = NSColor.init(patternImage: NSImage(named: "orange")!)
 
     

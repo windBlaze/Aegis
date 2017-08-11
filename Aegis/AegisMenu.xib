@@ -35,11 +35,11 @@
             <point key="canvasLocation" x="42.5" y="48.5"/>
         </menu>
         <customView id="p6q-AU-HfT" customClass="StatusView" customModule="Aegis" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="189" height="137"/>
+            <rect key="frame" x="0.0" y="0.0" width="202" height="137"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2B4-nQ-yuF">
-                    <rect key="frame" x="59" y="5" width="71" height="24"/>
+                    <rect key="frame" x="59" y="5" width="84" height="24"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="iwm-0D-4mf">
                         <font key="font" metaFont="system"/>
@@ -53,20 +53,20 @@
                     </connections>
                 </segmentedControl>
                 <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="eWe-d2-n9Z">
-                    <rect key="frame" x="0.0" y="40" width="189" height="97"/>
+                    <rect key="frame" x="0.0" y="40" width="202" height="97"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" ambiguous="YES" copiesOnScroll="NO" id="XBs-Ms-bWK">
-                        <rect key="frame" x="0.0" y="0.0" width="189" height="97"/>
+                        <rect key="frame" x="0.0" y="0.0" width="202" height="97"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="SiL-bB-Vws">
-                                <rect key="frame" x="0.0" y="0.0" width="189" height="97"/>
+                                <rect key="frame" x="0.0" y="0.0" width="202" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="leftInfo" width="74" minWidth="40" maxWidth="1000" id="L1L-fM-QE1">
+                                    <tableColumn identifier="leftInfo" width="62" minWidth="40" maxWidth="1000" id="L1L-fM-QE1">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -76,11 +76,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="TableCell" id="5gj-vL-bK1">
-                                                <rect key="frame" x="1" y="1" width="74" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="62" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFH-3T-4aY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="74" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="skh-do-9il">
                                                             <font key="font" metaFont="system"/>
@@ -95,7 +95,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="rightInfo" width="109" minWidth="10" maxWidth="3.4028234663852886e+38" id="mZ1-Lp-XDl">
+                                    <tableColumn identifier="rightInfo" width="134" minWidth="10" maxWidth="3.4028234663852886e+38" id="mZ1-Lp-XDl">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -109,11 +109,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="NZ9-pb-RnP">
-                                                <rect key="frame" x="78" y="1" width="109" height="17"/>
+                                                <rect key="frame" x="66" y="1" width="134" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cde-AY-bVM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="134" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="vXl-oU-495">
                                                             <font key="font" metaFont="system"/>
@@ -142,7 +142,7 @@
                     </scroller>
                 </scrollView>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3v-7P-9JI">
-                    <rect key="frame" x="134" y="5" width="51" height="25"/>
+                    <rect key="frame" x="134" y="5" width="64" height="25"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Auto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rpz-jj-Z2v">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -158,7 +158,7 @@
                 <outlet property="rememberCheckbox" destination="l3v-7P-9JI" id="xSP-dG-pbg"/>
                 <outlet property="tableView" destination="SiL-bB-Vws" id="hfB-ag-AqU"/>
             </connections>
-            <point key="canvasLocation" x="62.5" y="221.5"/>
+            <point key="canvasLocation" x="69" y="221.5"/>
         </customView>
         <customView wantsLayer="YES" id="ygI-XZ-aZY" customClass="HeaderView" customModule="Aegis" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="163" height="76"/>
@@ -174,9 +174,9 @@
                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </box>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dVE-X4-6vS">
-                    <rect key="frame" x="137" y="50" width="26" height="26"/>
+                    <rect key="frame" x="136" y="48" width="21" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon-close" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="cvG-W7-mgU">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="turn-off" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="cvG-W7-mgU">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -199,6 +199,6 @@
         <customCell alignment="left" id="wal-5h-sU8"/>
     </objects>
     <resources>
-        <image name="icon-close" width="300" height="300"/>
+        <image name="turn-off" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
 </document>

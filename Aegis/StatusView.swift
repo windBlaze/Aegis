@@ -132,7 +132,7 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     }
     
     @IBAction func onOnOffControlChange(_ sender: NSSegmentedControl) {
-        Swift.print("on off state change")
+        //Swift.print("on off state change")
         if (sender.isSelected(forSegment: 0)) { // on
             //gatewayMAC = arpWeaver.getMAC(forIP: gatewayIP)
             //self.startControl()
@@ -145,7 +145,7 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     
     
     @IBAction func onRememberCheckboxChange(_ sender: NSButton) {
-        Swift.print("remember state change")
+        //Swift.print("remember state change")
         if (sender.state == NSOnState) { //
             delegate?.onRememberChange(state: .YES)
         }
