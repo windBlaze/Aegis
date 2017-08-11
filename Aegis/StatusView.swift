@@ -23,22 +23,78 @@ protocol StatusViewDelegate {
     func onRememberChange(state: RememberState)
 }
 
-class StatusView: NSView {
+class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     @IBOutlet weak var onOffControl: NSSegmentedControl!
-    @IBOutlet weak var APDetailsLabel: NSTextField!
-    @IBOutlet weak var statusLabel: NSTextField!
     @IBOutlet weak var rememberCheckbox: NSButton!
+    @IBOutlet weak var tableView: NSTableView!
     
     var delegate: StatusViewDelegate?
     
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        //onOffControl.setImage(NSImage(color: NSColor.red,size:onOffControl.subviews[1].fittingSize), forSegment: 0)
-    }
+    var tableViewData = [["headerInfo":"AP DETAILS"],
+                         ["itemHeader":"IP","itemInfo":"Loading..."],
+                         ["itemHeader":"MAC","itemInfo":"Loading..."],
+                         ["headerInfo":"STATUS"],
+                         ["itemHeader":"OFF","itemInfo":""]
+    ]
+    
+    let IPRow = 1
+    let MACRow = 2
+    let StatusRow = 4
+    let padLength = 10
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         //onOffControl.setImage(NSImage(named: "shieldGreen"), forSegment: 0)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
+    
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return tableViewData.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
+        
+        if tableViewData[row]["headerInfo"] != nil{
+            //Header Row
+            let result = tableView.make(withIdentifier: "TableCell", owner: self) as! NSTableCellView
+            result.textField?.stringValue = tableViewData[row]["headerInfo"]!
+            result.textField?.font = NSFont.boldSystemFont(ofSize: (result.textField?.font?.pointSize)!)
+            return result
+        }
+        else{
+            //Data Row
+            let result = tableView.make(withIdentifier: "TableCell", owner: self) as! NSTableCellView
+            let header = tableViewData[row]["itemHeader"]!
+            let info = tableViewData[row]["itemInfo"]!
+            result.textField?.attributedStringValue = leftAndRightJustify(leftPart: header, rightPart: info)
+            //result.textField?.stringValue = header + String.init(repeating: " ", count: cellLength-header.characters.count - info.characters.count) + info
+            return result
+        }
+    }
+    
+    func leftAndRightJustify(leftPart:String, rightPart:String) -> NSMutableAttributedString {
+        let result = NSMutableAttributedString()
+        
+        let leftStyle = NSMutableParagraphStyle()
+        leftStyle.alignment = NSTextAlignment.left
+        let rightStyle = NSMutableParagraphStyle()
+        rightStyle.alignment = NSTextAlignment.right
+        rightStyle.tabStops = [ NSTextTab(textAlignment: .right, location: 40, options: [:]),]
+        
+        let leftAttributes: [String : Any] = [NSParagraphStyleAttributeName: leftStyle]
+        let rightAttributes: [String : Any] = [NSParagraphStyleAttributeName: rightStyle,NSFontAttributeName: NSFont.boldSystemFont(ofSize: 13)]
+        
+        let leftPartAttr = NSAttributedString(string: leftPart, attributes:leftAttributes)
+        let rightPartAttr = NSAttributedString(string: "\t\t"+rightPart, attributes:rightAttributes)
+        
+        result.append(leftPartAttr)
+        result.append(rightPartAttr)
+        
+        return result
+    }
+    
     
     func setOnOffState(enabled: Bool) {
         onOffControl.setEnabled(enabled, forSegment: 0)
@@ -62,9 +118,14 @@ class StatusView: NSView {
     
     func updateAPDetails(withIP: String, withMAC: String) {
         DispatchQueue.main.async {
-            self.APDetailsLabel.maximumNumberOfLines = 3
-            self.APDetailsLabel.stringValue = "AP Details:\n[IP]: \(withIP) \n[MAC]: \(withMAC)"
+            //self.APDetailsLabel.maximumNumberOfLines = 3
+            //self.APDetailsLabel.stringValue = "AP Details:\n[IP]: \(withIP) \n[MAC]: \(withMAC)"
+            self.tableViewData[self.IPRow]["itemInfo"] = withIP
+            self.tableViewData[self.MACRow]["itemInfo"] = withMAC
+            self.tableView.reloadData()
         }
+        //tableViewData[IPRow]["itemInfo"] = withIP
+        //tableView.reloadData()
     }
     
     func manuallyTurnOff() {
@@ -79,10 +140,14 @@ class StatusView: NSView {
         onOnOffControlChange(self.onOffControl)
     }
     
-    func updateStatus(withMessage: String ) {
+    func updateStatus(withHeader: String, withInfo: String ) {
         DispatchQueue.main.async {
-            self.statusLabel.stringValue = "Status: \(withMessage)"
-            self.statusLabel.setNeedsDisplay()
+            //self.statusLabel.stringValue = "Status: \(withMessage)"
+            //self.statusLabel.setNeedsDisplay()
+            self.tableViewData[self.StatusRow]["itemHeader"] = withHeader
+            self.tableViewData[self.StatusRow]["itemInfo"] = withInfo
+            //self.tableViewData[self.MACRow]["itemInfo"] = withMAC
+            self.tableView.reloadData()
         }
     }
     
@@ -97,6 +162,7 @@ class StatusView: NSView {
             delegate?.onControlChange(state: ControlState.OFF)
         }
     }
+    
     
     @IBAction func onRememberCheckboxChange(_ sender: NSButton) {
         Swift.print("remember state change")

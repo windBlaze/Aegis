@@ -15,6 +15,7 @@
 		E41491331F2D30BD003F52E4 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41491321F2D30BD003F52E4 /* StatusView.swift */; };
 		E473589A1F38BADB006DE437 /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47358991F38BADB006DE437 /* SHA256.swift */; };
 		E473589D1F38BBEC006DE437 /* PreferencesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473589C1F38BBEC006DE437 /* PreferencesHandler.swift */; };
+		E473589F1F390391006DE437 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473589E1F390391006DE437 /* HeaderView.swift */; };
 		E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498B79A1F36747500721BAE /* NotificationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		E47358991F38BADB006DE437 /* SHA256.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		E473589B1F38BB1B006DE437 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E473589C1F38BBEC006DE437 /* PreferencesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesHandler.swift; sourceTree = "<group>"; };
+		E473589E1F390391006DE437 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E498B79A1F36747500721BAE /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 				E47358991F38BADB006DE437 /* SHA256.swift */,
 				E473589B1F38BB1B006DE437 /* BridgingHeader.h */,
 				E498B79A1F36747500721BAE /* NotificationHandler.swift */,
+				E473589E1F390391006DE437 /* HeaderView.swift */,
 			);
 			path = Aegis;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				E498B79B1F36747500721BAE /* NotificationHandler.swift in Sources */,
 				E41491331F2D30BD003F52E4 /* StatusView.swift in Sources */,
 				E414912F1F2D2EAA003F52E4 /* ArpWeaver.swift in Sources */,
+				E473589F1F390391006DE437 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

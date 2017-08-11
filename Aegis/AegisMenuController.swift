@@ -12,12 +12,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     
     @IBOutlet weak var aegisMenu: NSMenu!
     @IBOutlet weak var statusView: StatusView!
+    @IBOutlet weak var headerView: HeaderView!
     
     // timers 
     weak var APTimer: Timer?
     weak var ControlTimer: Timer?
     
     var statusMenuItem: NSMenuItem!
+    var headerMenuItem: NSMenuItem!
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
@@ -35,10 +37,18 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         // attach menu
         statusItem.menu = aegisMenu
         
+        // create header view 
+        headerMenuItem = aegisMenu.item(withTitle: "Header")
+        headerMenuItem.view = headerView
+        
         // create status view
         statusMenuItem = aegisMenu.item(withTitle: "Status")
         statusMenuItem.view = statusView
         statusView.delegate = self
+        
+        // disable on off
+        statusView.setOnOffState(enabled: false)
+        statusView.setRememberState(enabled: false)
         
         //updateAPDetails()
         startAPTimer()
@@ -111,13 +121,15 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     
     func notifyAttack() {
         setIcon(toImage: "shieldRed")
-        statusView.updateStatus(withMessage: "Under Attack!")
+        headerView.setHeaderAttack()
+        statusView.updateStatus(withHeader: "Under Attack!", withInfo: getTimestamp())
         //notificationHandler.sendAttackNotification()
     }
     
     func notifyOK() {
         setIcon(toImage: "shieldGreen")
-        statusView.updateStatus(withMessage: "\(getTimestamp()) OK!")
+        headerView.setHeaderMonitoring()
+        statusView.updateStatus(withHeader: "OK", withInfo:getTimestamp())
     }
     
     private func getTimestamp() -> String {
@@ -127,7 +139,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         let hour = String(format: "%02d", calendar.component(.hour, from: date))
         let minutes = String(format: "%02d", calendar.component(.minute, from: date))
         let seconds = String(format: "%02d", calendar.component(.second, from: date))
-        return(" [ \(hour):\(minutes):\(seconds) ]")
+        return("\(hour):\(minutes):\(seconds)")
     }
     
     func updateAPDetails() {
@@ -169,12 +181,14 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     func onControlChange(state: ControlState) {
         if state == ControlState.ON {
             setIcon(toImage: "shieldGreen")
-            statusView.updateStatus(withMessage: "ON")
+            headerView.setHeaderMonitoring()
+            statusView.updateStatus(withHeader: "ON", withInfo: "")
             startControl()
         }
         else {
             setIcon(toImage: "shield")
-            statusView.updateStatus(withMessage: "OFF")
+            headerView.setHeaderOff()
+            statusView.updateStatus(withHeader: "OFF", withInfo: "")
             stopControl()
         }
     }
