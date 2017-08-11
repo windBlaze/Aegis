@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AegisMenuController: NSObject, StatusViewDelegate {
+class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
     
     @IBOutlet weak var aegisMenu: NSMenu!
     @IBOutlet weak var statusView: StatusView!
@@ -40,6 +40,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         // create header view 
         headerMenuItem = aegisMenu.item(withTitle: "Header")
         headerMenuItem.view = headerView
+        headerView.delegate = self
         
         // create status view
         statusMenuItem = aegisMenu.item(withTitle: "Status")
@@ -165,10 +166,6 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         }
     }
     
-    @IBAction func onQuit(_ sender: Any) {
-        NSApplication.shared().terminate(self)
-    }
-    
     func onRememberChange(state: RememberState) {
         if state == RememberState.YES {
             PreferencesHandler.saveAccessPoint(withSSID: accessPointSSID!, withMAC: accessPointMAC!)
@@ -191,6 +188,10 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             statusView.updateStatus(withHeader: "OFF", withInfo: "")
             stopControl()
         }
+    }
+    
+    func onQuit() {
+        NSApplication.shared().terminate(self)
     }
 }
 

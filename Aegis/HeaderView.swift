@@ -8,7 +8,14 @@
 
 import Cocoa
 
+protocol HeaderViewDelegate {
+    func onQuit()
+}
+
 class HeaderView: NSView {
+    
+    var delegate: HeaderViewDelegate?
+    
     
     @IBOutlet weak var backgroundBox: NSBox!
     let greenGradient = NSColor.init(patternImage: NSImage(named: "green")!)
@@ -43,5 +50,9 @@ class HeaderView: NSView {
     
     func setHeaderAttack() {
         changeBackground(toColor: redGradient)
+    }
+
+    @IBAction func onQuit(_ sender: Any) {
+        delegate?.onQuit()
     }
 }

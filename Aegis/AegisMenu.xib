@@ -31,12 +31,6 @@
                 <menuItem title="Status" id="yNN-Nz-vZS">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="fps-HC-jA8"/>
-                <menuItem title="Quit" keyEquivalent="q" id="M4C-LA-Zcs">
-                    <connections>
-                        <action selector="onQuit:" target="QGQ-z2-FLI" id="taP-PV-JHi"/>
-                    </connections>
-                </menuItem>
             </items>
             <point key="canvasLocation" x="42.5" y="48.5"/>
         </menu>
@@ -179,6 +173,17 @@
                     </view>
                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </box>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dVE-X4-6vS">
+                    <rect key="frame" x="137" y="50" width="26" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icon-close" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="cvG-W7-mgU">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onQuit:" target="ygI-XZ-aZY" id="YWL-Cx-NoQ"/>
+                    </connections>
+                </button>
                 <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-uR-uja">
                     <rect key="frame" x="44" y="8" width="74" height="60"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,4 +198,7 @@
         </customView>
         <customCell alignment="left" id="wal-5h-sU8"/>
     </objects>
+    <resources>
+        <image name="icon-close" width="300" height="300"/>
+    </resources>
 </document>
