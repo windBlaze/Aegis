@@ -30,17 +30,18 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     
     var delegate: StatusViewDelegate?
     
-    var tableViewData = [["headerInfo":"AP DETAILS"],
-                         ["itemHeader":"IP","itemInfo":"Loading..."],
-                         ["itemHeader":"MAC","itemInfo":"Loading..."],
-                         ["headerInfo":"STATUS"],
-                         ["itemHeader":"OFF","itemInfo":""]
+    var tableViewData = [["leftInfo":"DETAILS","rightInfo":""],
+                         ["leftInfo":"IP","rightInfo":"Loading ..."],
+                         ["leftInfo":"MAC","rightInfo":"Loading ..."],
+                         ["leftInfo":"STATUS", "rightInfo":""],
+                         ["leftInfo":"OFF","rightInfo":""]
     ]
     
     let IPRow = 1
     let MACRow = 2
     let StatusRow = 4
-    let padLength = 10
+    let headerRows = [0,3]
+    //let padLength = 10
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,45 +57,24 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
         
-        if tableViewData[row]["headerInfo"] != nil{
+        
+        if (headerRows.contains(row)) { // header row
             //Header Row
             let result = tableView.make(withIdentifier: "TableCell", owner: self) as! NSTableCellView
-            result.textField?.stringValue = tableViewData[row]["headerInfo"]!
+            result.textField?.stringValue = tableViewData[row][tableColumn!.identifier]!
             result.textField?.font = NSFont.boldSystemFont(ofSize: (result.textField?.font?.pointSize)!)
             return result
         }
         else{
-            //Data Row
             let result = tableView.make(withIdentifier: "TableCell", owner: self) as! NSTableCellView
-            let header = tableViewData[row]["itemHeader"]!
-            let info = tableViewData[row]["itemInfo"]!
-            result.textField?.attributedStringValue = leftAndRightJustify(leftPart: header, rightPart: info)
-            //result.textField?.stringValue = header + String.init(repeating: " ", count: cellLength-header.characters.count - info.characters.count) + info
+            result.textField?.stringValue = tableViewData[row][tableColumn!.identifier]!
+            if tableColumn!.identifier == "rightInfo" {
+                result.textField?.font = NSFont.boldSystemFont(ofSize: (result.textField?.font?.pointSize)!)
+                result.textField?.alignment = .right
+            }
             return result
         }
     }
-    
-    func leftAndRightJustify(leftPart:String, rightPart:String) -> NSMutableAttributedString {
-        let result = NSMutableAttributedString()
-        
-        let leftStyle = NSMutableParagraphStyle()
-        leftStyle.alignment = NSTextAlignment.left
-        let rightStyle = NSMutableParagraphStyle()
-        rightStyle.alignment = NSTextAlignment.right
-        rightStyle.tabStops = [ NSTextTab(textAlignment: .right, location: 40, options: [:]),]
-        
-        let leftAttributes: [String : Any] = [NSParagraphStyleAttributeName: leftStyle]
-        let rightAttributes: [String : Any] = [NSParagraphStyleAttributeName: rightStyle,NSFontAttributeName: NSFont.boldSystemFont(ofSize: 13)]
-        
-        let leftPartAttr = NSAttributedString(string: leftPart, attributes:leftAttributes)
-        let rightPartAttr = NSAttributedString(string: "\t\t"+rightPart, attributes:rightAttributes)
-        
-        result.append(leftPartAttr)
-        result.append(rightPartAttr)
-        
-        return result
-    }
-    
     
     func setOnOffState(enabled: Bool) {
         onOffControl.setEnabled(enabled, forSegment: 0)
@@ -120,8 +100,8 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
         DispatchQueue.main.async {
             //self.APDetailsLabel.maximumNumberOfLines = 3
             //self.APDetailsLabel.stringValue = "AP Details:\n[IP]: \(withIP) \n[MAC]: \(withMAC)"
-            self.tableViewData[self.IPRow]["itemInfo"] = withIP
-            self.tableViewData[self.MACRow]["itemInfo"] = withMAC
+            self.tableViewData[self.IPRow]["rightInfo"] = withIP
+            self.tableViewData[self.MACRow]["rightInfo"] = withMAC
             self.tableView.reloadData()
         }
         //tableViewData[IPRow]["itemInfo"] = withIP
@@ -144,8 +124,8 @@ class StatusView: NSView,NSTableViewDataSource, NSTableViewDelegate {
         DispatchQueue.main.async {
             //self.statusLabel.stringValue = "Status: \(withMessage)"
             //self.statusLabel.setNeedsDisplay()
-            self.tableViewData[self.StatusRow]["itemHeader"] = withHeader
-            self.tableViewData[self.StatusRow]["itemInfo"] = withInfo
+            self.tableViewData[self.StatusRow]["leftInfo"] = withHeader
+            self.tableViewData[self.StatusRow]["rightInfo"] = withInfo
             //self.tableViewData[self.MACRow]["itemInfo"] = withMAC
             self.tableView.reloadData()
         }
