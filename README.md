@@ -8,3 +8,6 @@ Aegis is a macOS app written in Swift that detects ARP spoofing by monitoring th
   2. Click on the switch to activate the protection for that Wi-Fi AP (be sure that its MAC address checks out first!).
   3. To have Aegis automatically turn on when you are connected to that AP, click on the “Auto” checkbox.
 
+## More information 
+
+Our blogpost about Aegis: https://securemonkeys.wordpress.com/aegis/
