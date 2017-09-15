@@ -18,7 +18,7 @@ final class PreferencesHandler  {
     
     static func isAccessPointSaved(withSSID:String, withMAC:String) -> Bool{
         let key = withSSID.sha256()
-        print(key)
+        //print(key)
         let hashedMAC = withMAC.sha256()
         let savedMAC = prefs.string(forKey: key)
         if (savedMAC != nil && savedMAC! == hashedMAC) {

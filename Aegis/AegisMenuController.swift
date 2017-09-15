@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AegisMenuController: NSObject, StatusViewDelegate {
+class AegisMenuController: NSObject, StatusViewDelegate, HeaderViewDelegate {
     
     @IBOutlet weak var aegisMenu: NSMenu!
     @IBOutlet weak var statusView: StatusView!
@@ -24,7 +24,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     let arpWeaver = ArpWeaver()
-    let notificationHandler = NotificationHandler()
+    //let notificationHandler = NotificationHandler()
     var accessPointIP:String?
     var accessPointMAC:String?
     var accessPointSSID:String?
@@ -33,13 +33,13 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         statusItem.menu = aegisMenu
         setIcon(toImage: "shield")
         
-        
         // attach menu
         statusItem.menu = aegisMenu
         
         // create header view 
         headerMenuItem = aegisMenu.item(withTitle: "Header")
         headerMenuItem.view = headerView
+        headerView.delegate = self
         
         // create status view
         statusMenuItem = aegisMenu.item(withTitle: "Status")
@@ -76,6 +76,9 @@ class AegisMenuController: NSObject, StatusViewDelegate {
         DispatchQueue.main.async {
             // create icon
             let icon = NSImage(named: toImage)
+            if (toImage == "shield") { // black icon
+                icon?.isTemplate = true // dark mode
+            }
             //icon?.isTemplate = true // dark mode
             self.statusItem.image = icon
         }
@@ -93,7 +96,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     }
     
     func checkMAC() {
-        print("Checking MAC")
+        //print("Checking MAC")
         // check if still connected to the same Wi-Fi
         let currentAccessPointIP = arpWeaver.getGatewayIP()
         if currentAccessPointIP == nil || didSSIDChange() {
@@ -104,7 +107,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             return
         }
         let currentAccessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
-        if (currentAccessPointMAC == nil) {print("nil")}
+        //if (currentAccessPointMAC == nil) {print("nil")}
         let underAttack:Bool = (currentAccessPointMAC != nil && currentAccessPointMAC! != accessPointMAC)
         if underAttack {
             notifyAttack()
@@ -143,7 +146,7 @@ class AegisMenuController: NSObject, StatusViewDelegate {
     }
     
     func updateAPDetails() {
-        print("AP details updated")
+        //print("AP details updated")
         accessPointIP = arpWeaver.getGatewayIP()
         if accessPointIP != nil {
             accessPointMAC = arpWeaver.getMAC(forIP: accessPointIP!)
@@ -163,10 +166,6 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             statusView.setOnOffState(enabled: false)
             statusView.setRememberState(enabled: false)
         }
-    }
-    
-    @IBAction func onQuit(_ sender: Any) {
-        NSApplication.shared().terminate(self)
     }
     
     func onRememberChange(state: RememberState) {
@@ -191,6 +190,10 @@ class AegisMenuController: NSObject, StatusViewDelegate {
             statusView.updateStatus(withHeader: "OFF", withInfo: "")
             stopControl()
         }
+    }
+    
+    func onQuit() {
+        NSApplication.shared().terminate(self)
     }
 }
 
